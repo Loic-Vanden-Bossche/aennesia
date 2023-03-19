@@ -7,7 +7,7 @@ jobs:
   deploy-backend:
     runs-on: self-hosted
 
-    variables:
+    env:
       DEPLOY_PATH: /apps/aennesia/backend
 
     strategy:
