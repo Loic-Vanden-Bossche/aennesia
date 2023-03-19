@@ -10,6 +10,8 @@ export class AppService {
   ) { }
 
   getHello() {
-    return this.http.get<string>('https://www.hollyfilms.fr/aennesia/api');
+    return this.http.get<string>('https://www.hollyfilms.fr/aennesia/api', {
+      responseType: 'text' as 'json'
+    });
   }
 }
