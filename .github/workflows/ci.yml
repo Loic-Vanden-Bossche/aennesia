@@ -10,13 +10,17 @@ jobs:
     env:
       DEPLOY_PATH: /apps/aennesia/backend
 
+    strategy:
+      matrix:
+        node-version: [16.x]
+
     steps:
       - uses: actions/checkout@v2
 
-      - name: Use Node.js 18
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
         working-directory: ./packages/backend
@@ -38,7 +42,7 @@ jobs:
         run: cp package.json $DEPLOY_PATH
 
       - name: Deploy - Install dependencies
-        working-directory: $DEPLOY_PATH
+        working-directory: ${{ env.DEPLOY_PATH }}
         run: npm i --omit=dev
 
       - name: Deploy - Restart server
