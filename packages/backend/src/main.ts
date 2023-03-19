@@ -7,6 +7,11 @@ async function bootstrap() {
  // Only in production
   app.setGlobalPrefix('aennesia/api');
 
+  app.enableCors({
+    origin: 'https://www.aennesia.fr',
+    credentials: true,
+  });
+
   await app.listen(3001);
 }
 bootstrap();
